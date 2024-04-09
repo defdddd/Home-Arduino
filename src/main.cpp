@@ -1,12 +1,14 @@
-#include <pins.cpp>
+#include <homeAutomatization.cpp>
+
+ReadData readData;
+HouseAutomatization houseAutomatization;
 
 void setup() {
-  pinMode(automaticSwitch, OUTPUT); // Configurează pinul LED-ului ca ieșire
+  readData.Setup();
+  houseAutomatization.Setup();
 }
 
 void loop() {
-  digitalWrite(automaticSwitch, HIGH); // Trimite semnal deschis către pinul LED-ului
-  delay(1000); // Așteaptă 1 secundă
-  digitalWrite(automaticSwitch, LOW); // Trimite semnal închis către pinul LED-ului
-  delay(1000); // Așteaptă 1 secundă
+  GrowattData growattData = readData.GetDataFromInvertor();
+  houseAutomatization.Execute(growattData);
 }
