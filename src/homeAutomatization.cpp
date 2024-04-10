@@ -81,8 +81,8 @@ class HouseAutomatization {
             int solarPower = data.solarPower;
             int consumptionPower = data.consumptionPower;
 
-            Serial.println("Boiler secounds:"+ String(boilerCount));
-            Serial.println("Solar Power:" + String(solarPower));
+            //Serial.println("Boiler secounds:"+ String(boilerCount));
+            //Serial.println("Solar Power:" + String(solarPower));
             //Serial.println("Boiler secounds:", heaterCount);
 
             if(batteryPow < 40)
@@ -91,6 +91,7 @@ class HouseAutomatization {
                 digitalWrite(boiler, OFF);
                 digitalWrite(waterHeater, OFF);
                 resetCounters();
+                delay(1000);
                 return;
             }
 

@@ -2,6 +2,7 @@
 #include <pins.cpp>
 #include <helpers.cpp>
 #include <SoftwareSerial.h> 
+
 class ReadData {
     private:
         ModbusMaster rs485;
@@ -28,6 +29,7 @@ class ReadData {
             }
             else
             {
+                result.invertorStatus = 1;
                 result.batteryPOW = 100;
                 result.solarPower = 1200;
                 result.consumptionPower = 2500;
