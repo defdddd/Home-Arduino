@@ -1,39 +1,41 @@
-#include <ModbusMaster.h>
-#include <pins.cpp>
-#include <helpers.cpp>
-#include <SoftwareSerial.h> 
+#include <ModbusMaster.h> // Includerea bibliotecii ModbusMaster pentru comunicarea Modbus
+#include <pins.cpp> // Includerea fișierului de configurare a pinilor
+#include <helpers.cpp> // Includerea fișierului de funcții auxiliare
+#include <SoftwareSerial.h> // Includerea bibliotecii SoftwareSerial pentru comunicare serială software
 
 class ReadData {
     private:
-        ModbusMaster rs485;
-        SoftwareSerial *serial;
+        ModbusMaster rs485; // Obiect pentru comunicarea Modbus
+        SoftwareSerial *serial; // Obiect pentru comunicarea serială software
     public: 
-        ReadData() {}
+        ReadData() {} // Constructorul clasei
+
         void Setup() {
-            serial = new SoftwareSerial (RX, TX, false); //RX, TX
-            serial->begin(MODBUS_RATE);
-            rs485.begin(SLAVE_ID , *serial);
+            serial = new SoftwareSerial (RX, TX, false); // Inițializarea obiectului SoftwareSerial cu pinii RX și TX
+            serial->begin(MODBUS_RATE); // Inițializarea comunicării seriale cu viteza specificată
+            rs485.begin(SLAVE_ID , *serial); // Inițializarea comunicării Modbus cu ID-ul sclavului și portul serial specificat
         }
 
         GrowattData GetDataFromInvertor() {
-            GrowattData result;
+            GrowattData result; // Crearea unui obiect GrowattData pentru a stoca datele citite
 
-            uint8_t gorwatResult = rs485.readInputRegisters(0x0000, 64);
+            uint8_t gorwatResult = rs485.readInputRegisters(0x0000, 64); // Citirea registrilor de intrare Modbus
 
-             if (gorwatResult == rs485.ku8MBSuccess)   
-             {
-                // Status and PV data
-                result.batteryPOW  = rs485.getResponseBuffer(18) * 0.1;
-                result.solarPower = ((rs485.getResponseBuffer(5) << 16) | rs485.getResponseBuffer(6)) * 0.1;
-                result.consumptionPower = ((rs485.getResponseBuffer(9) << 16) | rs485.getResponseBuffer(10)) * 0.1;
+            if (gorwatResult == rs485.ku8MBSuccess)   // Verificarea rezultatului citirii
+            {
+                // Interpretarea datelor citite pentru statusul invertorului și datele PV
+                result.batteryPOW  = rs485.getResponseBuffer(18) * 0.1; // Puterea bateriei
+                result.solarPower = ((rs485.getResponseBuffer(5) << 16) | rs485.getResponseBuffer(6)) * 0.1; // Puterea solară
+                result.consumptionPower = ((rs485.getResponseBuffer(9) << 16) | rs485.getResponseBuffer(10)) * 0.1; // Puterea de consum
             }
             else
             {
+                // În cazul unei erori la citire, se setează valori implicite
                 result.invertorStatus = 1;
                 result.batteryPOW = 100;
                 result.solarPower = 1200;
                 result.consumptionPower = 2500;
             }
-            return result;
+            return result; // Returnarea datelor citite
         }
 };

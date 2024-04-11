@@ -1,9 +1,9 @@
-#include <readDataGrowatt.cpp>
+#include <readDataGrowatt.cpp> // Includerea fișierului pentru citirea datelor Growatt
 
 class HouseAutomatization {
     private:
-        int boilerCount = 0;
-        int heaterCount = 0;
+        int boilerCount = 0; // Contor pentru activarea boilerului
+        int heaterCount = 0; // Contor pentru activarea încălzitorului de apă
 
         void resetCounters(){
             boilerCount = 0;
@@ -14,13 +14,12 @@ class HouseAutomatization {
 
             if(batteryPow > BATTERY_POWER_FOR_BOILER)
             {
-                //O data la 10 secunde porneste boileru
+                // Pornirea boilerului la fiecare 10 secunde
                 if(boilerCount % CHECKER_FOR_COUNTER_ON == 0){
                     digitalWrite(BOILER, ON);
                 }
 
-                // Verifica din 20 in 20 de secunde puterea panourilor
-                // il opreste boileru daca nu are putere
+                // Oprirea boilerului după 20 de secunde dacă nu există suficientă putere solară
                 if(boilerCount > CHECKER_FOR_COUNTER_OFF)
                 {
                     boilerCount = 0;
@@ -41,13 +40,12 @@ class HouseAutomatization {
         void updateStatusHeater(int solarPower, int batteryPow){
             if(batteryPow > BATTERY_POWER_FOR_HEATER)
             {
-                //O data la 10 secunde porneste puferul
+                // Pornirea încălzitorului de apă la fiecare 10 secunde
                 if(heaterCount % CHECKER_FOR_COUNTER_ON == 0){
                     digitalWrite(WATER_HEATER, ON);
                 }
 
-                // Verifica din 20 in 20 de secunde puterea panourilor
-                // il opreste puferul daca nu are putere
+                // Oprirea încălzitorului de apă după 20 de secunde dacă nu există suficientă putere solară
                 if(heaterCount > CHECKER_FOR_COUNTER_OFF)
                 {
                     heaterCount = 0;
@@ -68,10 +66,10 @@ class HouseAutomatization {
         HouseAutomatization() {}
 
         void Setup() {
-            pinMode(AUTOMATIC_SWITCH, OUTPUT);
-            pinMode(BOILER, OUTPUT);
-            pinMode(WATER_HEATER, OUTPUT);
-            Serial.begin(9600);
+            pinMode(AUTOMATIC_SWITCH, OUTPUT); // Inițializarea pinului AUTOMATIC_SWITCH ca ieșire
+            pinMode(BOILER, OUTPUT); // Inițializarea pinului BOILER ca ieșire
+            pinMode(WATER_HEATER, OUTPUT); // Inițializarea pinului WATER_HEATER ca ieșire
+            Serial.begin(9600); // Inițializarea comunicării seriale cu viteza 9600 baud
         }
 
         void Execute(GrowattData data) 
@@ -81,38 +79,37 @@ class HouseAutomatization {
             int solarPower = data.solarPower;
             int consumptionPower = data.consumptionPower;
 
-            Serial.println("Boiler secounds:"+ String(boilerCount));
-            Serial.println("Solar Power:" + String(solarPower));
-            //Serial.println("Boiler secounds:", heaterCount);
+            Serial.println("Boiler seconds:"+ String(boilerCount)); // Afisarea contorului pentru boiler în secunde
+            Serial.println("Solar Power:" + String(solarPower)); // Afisarea puterii solare
 
             if(batteryPow < BATTERY_POWER_FOR_SWITHCING_OFF)
             {
-                digitalWrite(AUTOMATIC_SWITCH, OFF);
-                digitalWrite(BOILER, OFF);
-                digitalWrite(WATER_HEATER, OFF);
-                resetCounters();
+                digitalWrite(AUTOMATIC_SWITCH, OFF); // Oprirea automatizării casei dacă puterea bateriei este prea mică
+                digitalWrite(BOILER, OFF); // Oprirea boilerului
+                digitalWrite(WATER_HEATER, OFF); // Oprirea încălzitorului de apă
+                resetCounters(); // Resetarea contoarelor
                 return;
             }
 
             if(batteryPow > BATTERY_POWER_FOR_SWITHCING_ON)
             {
 
-                digitalWrite(AUTOMATIC_SWITCH, ON);
+                digitalWrite(AUTOMATIC_SWITCH, ON); // Pornirea automatizării casei
 
                 if(solarPower > START_SOLAR_POWER)
                 {
-                    updateStatusBoiler(solarPower, batteryPow);
+                    updateStatusBoiler(solarPower, batteryPow); // Actualizarea stării boilerului
 
-                    updateStatusHeater(solarPower, batteryPow);
+                    updateStatusHeater(solarPower, batteryPow); // Actualizarea stării încălzitorului de apă
 
-                    boilerCount++;
-                    heaterCount++;
+                    boilerCount++; // Incrementarea contorului pentru boiler
+                    heaterCount++; // Incrementarea contorului pentru încălzitorul de apă
                 }
             }
             else
             {
-                resetCounters();
+                resetCounters(); // Resetarea contoarelor dacă puterea bateriei este prea mică
             }
-            //delay(1000);
+            //delay(1000); // O eventuală întârziere (nu este activată în acest moment)
         }
 };
