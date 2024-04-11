@@ -18,6 +18,6 @@ void loop() {
   //executa automatizarile in functie de date
   houseAutomatization.Execute(growattData);
 
-  //afiseaza datele e dislay
+  //afiseaza datele pe dislay
   TFT.Display(growattData);
 }
