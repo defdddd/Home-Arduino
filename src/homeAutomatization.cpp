@@ -12,65 +12,65 @@ class HouseAutomatization {
 
         void updateStatusBoiler(int solarPower, int batteryPow){
 
-            if(batteryPow > 75)
+            if(batteryPow > BATTERY_POWER_FOR_BOILER)
             {
                 //O data la 10 secunde porneste boileru
-                if(boilerCount % 10 == 0){
-                    digitalWrite(boiler, ON);
+                if(boilerCount % CHECKER_FOR_COUNTER_ON == 0){
+                    digitalWrite(BOILER, ON);
                 }
 
                 // Verifica din 20 in 20 de secunde puterea panourilor
                 // il opreste boileru daca nu are putere
-                if(boilerCount > 20)
+                if(boilerCount > CHECKER_FOR_COUNTER_OFF)
                 {
                     boilerCount = 0;
 
-                    if(solarPower < BOILERPOWER)
+                    if(solarPower < BOILER_POWER)
                     {
-                        digitalWrite(boiler, OFF);
+                        digitalWrite(BOILER, OFF);
                     }
                 }
 
             }             
             else
             {
-                digitalWrite(boiler, OFF);
+                digitalWrite(BOILER, OFF);
             }         
         }
 
         void updateStatusHeater(int solarPower, int batteryPow){
-            if(batteryPow > 89)
+            if(batteryPow > BATTERY_POWER_FOR_HEATER)
             {
                 //O data la 10 secunde porneste puferul
-                if(heaterCount % 10 == 0){
-                    digitalWrite(waterHeater, ON);
+                if(heaterCount % CHECKER_FOR_COUNTER_ON == 0){
+                    digitalWrite(WATER_HEATER, ON);
                 }
 
                 // Verifica din 20 in 20 de secunde puterea panourilor
                 // il opreste puferul daca nu are putere
-                if(heaterCount > 20)
+                if(heaterCount > CHECKER_FOR_COUNTER_OFF)
                 {
                     heaterCount = 0;
 
-                    if(solarPower < WATERHEATERPOWER)
+                    if(solarPower < WATER_HEATER_POWER)
                     {
-                        digitalWrite(waterHeater, OFF);
+                        digitalWrite(WATER_HEATER, OFF);
                     }
                 }
 
             }             
             else
             {
-                digitalWrite(waterHeater, OFF);
+                digitalWrite(WATER_HEATER, OFF);
             }         
         }       
     public: 
         HouseAutomatization() {}
 
         void Setup() {
-            pinMode(automaticSwitch, OUTPUT);
-            pinMode(boiler, OUTPUT);
-            pinMode(waterHeater, OUTPUT);
+            pinMode(AUTOMATIC_SWITCH, OUTPUT);
+            pinMode(BOILER, OUTPUT);
+            pinMode(WATER_HEATER, OUTPUT);
             Serial.begin(9600);
         }
 
@@ -81,36 +81,38 @@ class HouseAutomatization {
             int solarPower = data.solarPower;
             int consumptionPower = data.consumptionPower;
 
-            //Serial.println("Boiler secounds:"+ String(boilerCount));
-            //Serial.println("Solar Power:" + String(solarPower));
+            Serial.println("Boiler secounds:"+ String(boilerCount));
+            Serial.println("Solar Power:" + String(solarPower));
             //Serial.println("Boiler secounds:", heaterCount);
 
-            if(batteryPow < 40)
+            if(batteryPow < BATTERY_POWER_FOR_SWITHCING_OFF)
             {
-                digitalWrite(automaticSwitch, OFF);
-                digitalWrite(boiler, OFF);
-                digitalWrite(waterHeater, OFF);
+                digitalWrite(AUTOMATIC_SWITCH, OFF);
+                digitalWrite(BOILER, OFF);
+                digitalWrite(WATER_HEATER, OFF);
                 resetCounters();
-                delay(1000);
                 return;
             }
 
-            if(batteryPow > 42)
+            if(batteryPow > BATTERY_POWER_FOR_SWITHCING_ON)
             {
 
-                digitalWrite(automaticSwitch, ON);
+                digitalWrite(AUTOMATIC_SWITCH, ON);
 
-                updateStatusBoiler(solarPower, batteryPow);
+                if(solarPower > START_SOLAR_POWER)
+                {
+                    updateStatusBoiler(solarPower, batteryPow);
 
-                updateStatusHeater(solarPower, batteryPow);
+                    updateStatusHeater(solarPower, batteryPow);
 
-                boilerCount++;
-                heaterCount++;
+                    boilerCount++;
+                    heaterCount++;
+                }
             }
             else
             {
                 resetCounters();
             }
-            delay(1000);
+            //delay(1000);
         }
 };
