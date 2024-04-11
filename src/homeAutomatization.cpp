@@ -29,7 +29,6 @@ class HouseAutomatization {
                         digitalWrite(BOILER, OFF);
                     }
                 }
-
             }             
             else
             {
@@ -55,7 +54,6 @@ class HouseAutomatization {
                         digitalWrite(WATER_HEATER, OFF);
                     }
                 }
-
             }             
             else
             {
