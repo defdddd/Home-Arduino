@@ -94,7 +94,7 @@ class HouseAutomatization {
 
                 digitalWrite(AUTOMATIC_SWITCH, ON); // Pornirea automatizării casei
 
-                if(solarPower > START_SOLAR_POWER && pvVoltage > START_SOLAR_VOLTAGE)
+                if(solarPower > START_SOLAR_POWER || pvVoltage > START_SOLAR_VOLTAGE)
                 {
                     updateStatusBoiler(solarPower, batteryPow); // Actualizarea stării boilerului
 
