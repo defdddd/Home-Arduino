@@ -2,9 +2,9 @@
 
 //CONSTANTS
 const int NUMBER_OF_INVERTORS = 2; // Numărul de invertori utilizat
-const int HOUSE_CONSUMPTION = 200; // Consumul casei în watt
-const int BOILER_POWER = (3000/NUMBER_OF_INVERTORS) - HOUSE_CONSUMPTION; // Puterea boilerei în watt
-const int WATER_HEATER_POWER = (4000/NUMBER_OF_INVERTORS) - HOUSE_CONSUMPTION; // Puterea încălzitorului de apă în watt
+const int HOUSE_CONSUMPTION = 50; // Consumul casei în watt
+const int BOILER_POWER = (3000/NUMBER_OF_INVERTORS) + HOUSE_CONSUMPTION; // Puterea boilerei în watt
+const int WATER_HEATER_POWER = (4000/NUMBER_OF_INVERTORS) + HOUSE_CONSUMPTION; // Puterea încălzitorului de apă în watt
 
 const int START_SOLAR_POWER = 50; // Puterea inițială a sursei solare în watt
 const int BATTERY_POWER_FOR_SWITHCING_OFF = 40; // Puterea bateriei pentru întreruperea alimentării în %
