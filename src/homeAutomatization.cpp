@@ -67,7 +67,7 @@ class HouseAutomatization {
             pinMode(AUTOMATIC_SWITCH, OUTPUT); // Inițializarea pinului AUTOMATIC_SWITCH ca ieșire
             pinMode(BOILER, OUTPUT); // Inițializarea pinului BOILER ca ieșire
             pinMode(WATER_HEATER, OUTPUT); // Inițializarea pinului WATER_HEATER ca ieșire
-            Serial.begin(9600); // Inițializarea comunicării seriale cu viteza 9600 baud
+            //Serial.begin(9600); // Inițializarea comunicării seriale cu viteza 9600 baud
         }
 
         void Execute(GrowattData data) 
@@ -75,10 +75,10 @@ class HouseAutomatization {
 
             int batteryPow = data.batteryPOW;
             int solarPower = data.solarPower;
-            int consumptionPower = data.consumptionPower;
+            int pvVoltage = data.pvVoltage;
 
-            Serial.println("Boiler seconds:"+ String(boilerCount)); // Afisarea contorului pentru boiler în secunde
-            Serial.println("Solar Power:" + String(solarPower)); // Afisarea puterii solare
+            //Serial.println("Boiler seconds:"+ String(boilerCount)); // Afisarea contorului pentru boiler în secunde
+            //Serial.println("Solar Power:" + String(solarPower)); // Afisarea puterii solare
 
             if(batteryPow < BATTERY_POWER_FOR_SWITHCING_OFF)
             {
@@ -94,7 +94,7 @@ class HouseAutomatization {
 
                 digitalWrite(AUTOMATIC_SWITCH, ON); // Pornirea automatizării casei
 
-                if(solarPower > START_SOLAR_POWER)
+                if(solarPower > START_SOLAR_POWER && pvVoltage > START_SOLAR_VOLTAGE)
                 {
                     updateStatusBoiler(solarPower, batteryPow); // Actualizarea stării boilerului
 
@@ -102,6 +102,12 @@ class HouseAutomatization {
 
                     boilerCount++; // Incrementarea contorului pentru boiler
                     heaterCount++; // Incrementarea contorului pentru încălzitorul de apă
+                }
+                else
+                {
+                    digitalWrite(BOILER, OFF); // Oprirea boilerului
+                    digitalWrite(WATER_HEATER, OFF); // Oprirea încălzitorului de apă
+                    resetCounters(); // Resetarea contoarelor
                 }
             }
             else

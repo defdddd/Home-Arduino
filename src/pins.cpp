@@ -9,6 +9,7 @@ const int WATER_HEATER_POWER = (4000/NUMBER_OF_INVERTORS) - HOUSE_CONSUMPTION; /
 const int START_SOLAR_POWER = 50; // Puterea inițială a sursei solare în watt
 const int BATTERY_POWER_FOR_SWITHCING_OFF = 40; // Puterea bateriei pentru întreruperea alimentării în %
 const int BATTERY_POWER_FOR_SWITHCING_ON = 42; // Puterea bateriei pentru reluarea alimentării în %
+const int START_SOLAR_VOLTAGE = 200;
 
 const int BATTERY_POWER_FOR_BOILER = 74; // Puterea bateriei necesară pentru boiler în %
 const int BATTERY_POWER_FOR_HEATER = 89; // Puterea bateriei necesară pentru încălzitorul de apă în %
