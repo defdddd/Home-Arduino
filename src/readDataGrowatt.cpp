@@ -27,9 +27,9 @@ class ReadData {
                 // Interpretarea datelor citite pentru statusul invertorului și datele PV
                 result.invertorStatus = rs485.getResponseBuffer(0);
                 result.batteryPOW  = rs485.getResponseBuffer(18); // Puterea bateriei
-                result.solarPower = ((rs485.getResponseBuffer(3) << 16) | rs485.getResponseBuffer(4)) * 0.1; // Puterea solară
+                result.solarPower = (rs485.getResponseBuffer(4)) * 0.1; // Puterea solară
                 result.consumptionPower = ((rs485.getResponseBuffer(9) << 16) | rs485.getResponseBuffer(10)) * 0.1; // Puterea de consum
-                result.pvVoltage = ((rs485.getResponseBuffer(1) << 16) | rs485.getResponseBuffer(2)) * 0.1; // Puterea solară
+                result.pvVoltage = (rs485.getResponseBuffer(1)) * 0.1; // Puterea solară
 
             }
             else
