@@ -1,7 +1,14 @@
 struct GrowattData {
-  int invertorStatus;
-  int batteryPOW;
-  int solarPower;
-  int consumptionPower;
-  int pvVoltage;  
+  float invertorStatus;
+  float batteryPOW;
+  float solarPower;
+  float consumptionPower;
+  float pvVoltage; 
+  /////
+  float year;
+  float month;
+  float day;
+  float hour;
+  float min;   
+  float sec;   
 };

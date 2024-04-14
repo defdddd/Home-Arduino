@@ -19,10 +19,10 @@ class ReadData {
         GrowattData GetDataFromInvertor() {
             GrowattData result; // Crearea unui obiect GrowattData pentru a stoca datele citite
 
-            uint8_t gorwatResult = rs485.readInputRegisters(0x0000, 64); // Citirea registrilor de intrare Modbus
+            uint8_t gorwatInputResult = rs485.readInputRegisters(0x0000, 64); // Citirea registrilor de intrare Modbus
 
             delay(500);
-            if (gorwatResult == rs485.ku8MBSuccess)   // Verificarea rezultatului citirii
+            if (gorwatInputResult == rs485.ku8MBSuccess)   // Verificarea rezultatului citirii
             {
                 // Interpretarea datelor citite pentru statusul invertorului și datele PV
                 result.invertorStatus = rs485.getResponseBuffer(0);
@@ -36,12 +36,36 @@ class ReadData {
             {
                 // În cazul unei erori la citire, se setează valori implicite
                 result.invertorStatus = random(1);
-                result.batteryPOW = random(100);;
-                result.solarPower = random(1212);;
-                result.consumptionPower = random(1222);;
-                result.pvVoltage = random(1123);;
+                result.batteryPOW = random(100);
+                result.solarPower = random(1212);
+                result.consumptionPower = random(1222);
+                result.pvVoltage = random(1123);
             }
-            
+            delay(500);
+
+
+            uint8_t gorwatHoldingResult = rs485.readHoldingRegisters(0x0000, 64); // Citirea registrilor de intrare Modbus
+
+            delay(500);
+
+            if (gorwatHoldingResult == rs485.ku8MBSuccess)   // Verificarea rezultatului citirii
+            {         
+                result.year = rs485.getResponseBuffer(45);
+                result.month  = rs485.getResponseBuffer(46);
+                result.day = rs485.getResponseBuffer(47); 
+                result.hour = rs485.getResponseBuffer(48);
+                result.min = rs485.getResponseBuffer(49);
+            }
+            else
+            {
+                // În cazul unei erori la citire, se setează valori implicite
+                result.year = 0;
+                result.month = 0;
+                result.day = 0;
+                result.hour = 0;
+                result.min = 0;
+            }   
+
             return result; // Returnarea datelor citite
         }
 };
