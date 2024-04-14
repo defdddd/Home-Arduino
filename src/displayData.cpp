@@ -17,21 +17,19 @@ class DisplayData {
     {
         tft.setTextColor(BLACK);
         tft.setCursor(140, 20); // Setează poziția textului
-        tft.print("0000");
+        tft.println(1,1);
 
         tft.setCursor(140, 50);
-        tft.print("0000");
+        tft.println(1,1);
 
         tft.setCursor(140, 80);
-        tft.print("0000");
+        tft.println(1,1);
 
         tft.setCursor(140, 110);
-        tft.print("0000");
+        tft.println(1,1);
 
         tft.setCursor(140, 140);
-        tft.print("0000");
-
-        delay(500);
+        tft.println(1,1);
     }
 
     public: 
@@ -45,18 +43,20 @@ class DisplayData {
             
             // Scrie textele pentru structura
             tft.setCursor(10, 20); // Setează poziția textului
-            tft.print(statusInvertorText);
+            tft.println(statusInvertorText);
             tft.setCursor(10, 50);
-            tft.print(procentBaterieText);
+            tft.println(procentBaterieText);
             tft.setCursor(10, 80);
-            tft.print(puterePanouriText);
+            tft.println(puterePanouriText);
             tft.setCursor(10, 110);
-            tft.print(voltajText);
+            tft.println(voltajText);
             tft.setCursor(10, 140);
-            tft.print(consumText);
+            tft.println(consumText);
         }
 
         void Display(GrowattData data) {
+
+            delay(500);
 
             // Setează fontul și dimensiunea textului pentru valorile structurii
             deleteData();
@@ -65,19 +65,19 @@ class DisplayData {
 
             // Scrie valorile actualizate pe ecran
             tft.setCursor(140, 20); // Setează poziția textului
-            tft.print(data.invertorStatus);
+            tft.println(data.invertorStatus, 1);
 
             tft.setCursor(140, 50);
-            tft.print(data.batteryPOW);
+            tft.println(data.batteryPOW, 1);
 
             tft.setCursor(140, 80);
-            tft.print(data.solarPower);
+            tft.println(data.solarPower, 1);
 
             tft.setCursor(140, 110);
-            tft.print(data.pvVoltage);
+            tft.println(data.pvVoltage, 1);
 
             tft.setCursor(140, 140);
-            tft.print(data.consumptionPower);
+            tft.println(data.consumptionPower, 1);
         }    
 };
 
