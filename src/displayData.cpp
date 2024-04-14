@@ -62,7 +62,7 @@ class DisplayData {
             // Setează fontul și dimensiunea textului pentru valorile structurii
             deleteData();
             tft.setTextSize(2);
-            tft.setTextColor(RED); // Schimbă culoarea textului pentru valorile actualizate
+            tft.setTextColor(GREEN); // Schimbă culoarea textului pentru valorile actualizate
 
             // Scrie valorile actualizate pe ecran
             tft.setCursor(140, 20); // Setează poziția textului
