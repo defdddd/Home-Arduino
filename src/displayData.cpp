@@ -25,42 +25,27 @@ class DisplayData {
     {
         if (data.invertorStatus != previousInvertorStatus) {
         // Actualizează valoarea pe ecran
-            tft.setCursor(140, 20);
-            tft.setTextColor(BLACK);
-            tft.setTextSize(2);
-            tft.println(data.invertorStatus, 1);
+            tft.fillRect(140, 20, 100, 20, BLACK);
             previousInvertorStatus = data.invertorStatus; // Actualizează valoarea anterioară
         }
 
         if (data.batteryPOW != previousBatteryPOW) {
-            tft.setCursor(140, 50);
-            tft.setTextColor(BLACK);
-            tft.setTextSize(2);
-            tft.println(data.batteryPOW, 1);
+            tft.fillRect(140, 50, 100, 20, BLACK);
             previousBatteryPOW = data.batteryPOW;
         }
 
         if (data.solarPower != previousSolarPower) {
-            tft.setCursor(140, 80);
-            tft.setTextColor(BLACK);
-            tft.setTextSize(2);
-            tft.println(data.solarPower, 1);
+            tft.fillRect(140, 80, 100, 20, BLACK);
             previousSolarPower = data.solarPower;
         }
 
         if (data.pvVoltage != previousPvVoltage) {
-            tft.setCursor(140, 110);
-            tft.setTextColor(BLACK);
-            tft.setTextSize(2);
-            tft.println(data.pvVoltage, 1);
+            tft.fillRect(140, 110, 100, 20, BLACK);
             previousPvVoltage = data.pvVoltage;
         }
 
         if (data.consumptionPower != previousConsumptionPower) {
-            tft.setCursor(140, 140);
-            tft.setTextColor(BLACK);
-            tft.setTextSize(2);
-            tft.println(data.consumptionPower, 1);
+            tft.fillRect(140, 140, 100, 20, BLACK);
             previousConsumptionPower = data.consumptionPower;
         }
     }
