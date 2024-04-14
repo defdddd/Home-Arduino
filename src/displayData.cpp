@@ -13,24 +13,56 @@ class DisplayData {
     String puterePanouriText = "PV W:";
     String consumText = "Consum:";
     String voltajText = "PV V:";
-    void deleteData()
+
+    int previousInvertorStatus = 0;
+    int previousBatteryPOW = 0;
+    int previousSolarPower = 0;
+    int previousPvVoltage = 0;
+    int previousConsumptionPower = 0;
+
+
+    void checkData(GrowattData data)
     {
-        tft.setTextSize(2);
-        tft.setTextColor(BLACK);
-        tft.setCursor(140, 20); // Setează poziția textului
-        tft.println(1000,1);
+        if (data.invertorStatus != previousInvertorStatus) {
+        // Actualizează valoarea pe ecran
+            tft.setCursor(140, 20);
+            tft.setTextColor(BLACK);
+            tft.setTextSize(2);
+            tft.println(data.invertorStatus, 1);
+            previousInvertorStatus = data.invertorStatus; // Actualizează valoarea anterioară
+        }
 
-        tft.setCursor(140, 50);
-        tft.println(1000,1);
+        if (data.batteryPOW != previousBatteryPOW) {
+            tft.setCursor(140, 50);
+            tft.setTextColor(BLACK);
+            tft.setTextSize(2);
+            tft.println(data.batteryPOW, 1);
+            previousBatteryPOW = data.batteryPOW;
+        }
 
-        tft.setCursor(140, 80);
-        tft.println(1000,1);
+        if (data.solarPower != previousSolarPower) {
+            tft.setCursor(140, 80);
+            tft.setTextColor(BLACK);
+            tft.setTextSize(2);
+            tft.println(data.solarPower, 1);
+            previousSolarPower = data.solarPower;
+        }
 
-        tft.setCursor(140, 110);
-        tft.println(1000,1);
+        if (data.pvVoltage != previousPvVoltage) {
+            tft.setCursor(140, 110);
+            tft.setTextColor(BLACK);
+            tft.setTextSize(2);
+            tft.println(data.pvVoltage, 1);
+            previousPvVoltage = data.pvVoltage;
+        }
 
-        tft.setCursor(140, 140);
-        tft.println(1000,1);
+        if (data.consumptionPower != previousConsumptionPower) {
+            tft.setCursor(140, 140);
+            tft.setTextColor(BLACK);
+            tft.setTextSize(2);
+            tft.println(data.consumptionPower, 1);
+            previousConsumptionPower = data.consumptionPower;
+        }
     }
 
     public: 
@@ -57,28 +89,27 @@ class DisplayData {
 
         void Display(GrowattData data) {
 
-            delay(500);
-
             // Setează fontul și dimensiunea textului pentru valorile structurii
-            deleteData();
+            checkData(data);
+
             tft.setTextSize(2);
             tft.setTextColor(GREEN); // Schimbă culoarea textului pentru valorile actualizate
 
             // Scrie valorile actualizate pe ecran
             tft.setCursor(140, 20); // Setează poziția textului
-            tft.println(data.invertorStatus, 1);
+            tft.println(previousInvertorStatus, 1);
 
             tft.setCursor(140, 50);
-            tft.println(data.batteryPOW, 1);
+            tft.println(previousBatteryPOW, 1);
 
             tft.setCursor(140, 80);
-            tft.println(data.solarPower, 1);
+            tft.println(previousSolarPower, 1);
 
             tft.setCursor(140, 110);
-            tft.println(data.pvVoltage, 1);
+            tft.println(previousPvVoltage, 1);
 
             tft.setCursor(140, 140);
-            tft.println(data.consumptionPower, 1);
+            tft.println(previousConsumptionPower, 1);
         }    
 };
 
