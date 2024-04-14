@@ -20,23 +20,15 @@ class DisplayData {
         tft.setCursor(140, 20); // Setează poziția textului
         tft.println(1,1);
 
-        tft.setTextSize(2);
-        tft.setTextColor(BLACK);
         tft.setCursor(140, 50);
         tft.println(1,1);
 
-        tft.setTextSize(2);
-        tft.setTextColor(BLACK);
         tft.setCursor(140, 80);
         tft.println(1,1);
 
-        tft.setTextSize(2);
-        tft.setTextColor(BLACK);
         tft.setCursor(140, 110);
         tft.println(1,1);
 
-        tft.setTextSize(2);
-        tft.setTextColor(BLACK);
         tft.setCursor(140, 140);
         tft.println(1,1);
     }
