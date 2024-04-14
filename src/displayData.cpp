@@ -16,20 +16,22 @@ class DisplayData {
     void deleteData()
     {
         tft.setTextColor(BLACK);
-        tft.setCursor(140, 10); // Setează poziția textului
-        tft.print(1111);
+        tft.setCursor(140, 20); // Setează poziția textului
+        tft.print("0000");
 
-        tft.setCursor(140, 40);
-        tft.print(1111);
+        tft.setCursor(140, 50);
+        tft.print("0000");
 
-        tft.setCursor(140, 70);
-        tft.print(1111);
+        tft.setCursor(140, 80);
+        tft.print("0000");
 
-        tft.setCursor(140, 100);
-        tft.print(1111);
+        tft.setCursor(140, 110);
+        tft.print("0000");
 
-        tft.setCursor(140, 130);
-        tft.print(1111);
+        tft.setCursor(140, 140);
+        tft.print("0000");
+
+        delay(500);
     }
 
     public: 
@@ -52,8 +54,6 @@ class DisplayData {
             tft.print(voltajText);
             tft.setCursor(10, 140);
             tft.print(consumText);
-
-            tft.setTextColor(RED);
         }
 
         void Display(GrowattData data) {

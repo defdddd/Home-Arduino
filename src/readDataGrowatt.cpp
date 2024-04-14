@@ -20,6 +20,7 @@ class ReadData {
             GrowattData result; // Crearea unui obiect GrowattData pentru a stoca datele citite
 
             uint8_t gorwatResult = rs485.readInputRegisters(0x0000, 64); // Citirea registrilor de intrare Modbus
+
             delay(500);
             if (gorwatResult == rs485.ku8MBSuccess)   // Verificarea rezultatului citirii
             {
@@ -34,12 +35,13 @@ class ReadData {
             else
             {
                 // În cazul unei erori la citire, se setează valori implicite
-                result.invertorStatus = 1;
-                result.batteryPOW = 100;
-                result.solarPower = 1200;
-                result.consumptionPower = 2500;
-                result.pvVoltage = 201;
+                result.invertorStatus = random(1);
+                result.batteryPOW = random(100);;
+                result.solarPower = random(1212);;
+                result.consumptionPower = random(1222);;
+                result.pvVoltage = random(1123);;
             }
+            
             return result; // Returnarea datelor citite
         }
 };
