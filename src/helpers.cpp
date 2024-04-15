@@ -5,10 +5,10 @@ struct GrowattData {
   float consumptionPower;
   float pvVoltage; 
   /////
-  float year;
-  float month;
-  float day;
-  float hour;
-  float min;   
-  float sec;   
+  int year;
+  int month;
+  int day;
+  int hour;
+  int min;   
+  int sec;   
 };

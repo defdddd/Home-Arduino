@@ -15,6 +15,8 @@ class DisplayData {
     String voltajText = "PV V:";
     String dataText = "Data:";
     String currentDate = "";
+    String hour = "Ora:";
+    String currentHour = "";
 
     int previousInvertorStatus = 0;
     int previousBatteryPOW = 0;
@@ -22,7 +24,7 @@ class DisplayData {
     int previousPvVoltage = 0;
     int previousConsumptionPower = 0;
     int previousMinute = 0;
-
+    int previousDay = 0;
 
     void checkData(GrowattData data)
     {
@@ -52,14 +54,20 @@ class DisplayData {
             previousConsumptionPower = data.consumptionPower;
         }
 
-        if (data.min != previousMinute) {
+        if (data.day != previousDay) {
             tft.fillRect(100, 170, 200, 20, BLACK);
-            previousMinute = data.min;
+            previousDay = data.day;
 
             currentDate = (String) data.day + "." +
                           (String) data.month + "." +
-                          (String) data.year + " " +
-                          (String) data.hour + ":" +
+                          (String) data.year;
+        }
+
+        if (data.min != previousMinute) {
+            tft.fillRect(100, 200, 200, 20, BLACK);
+            previousMinute = data.min;
+
+            currentHour = (String) data.hour + ":" +
                           (String) data.min;
         }
     }
@@ -89,11 +97,14 @@ class DisplayData {
 
     void displayHoldingData()
     {
-        tft.setTextSize(1);
+        tft.setTextSize(2);
         tft.setTextColor(BLUE); 
 
         tft.setCursor(100, 170);
         tft.println(currentDate);
+
+        tft.setCursor(100, 200);
+        tft.println(currentHour);
     }
 
 
@@ -118,7 +129,9 @@ class DisplayData {
             tft.setCursor(10, 140);
             tft.println(consumText);
             tft.setCursor(10, 170);
-            tft.println(dataText);
+            tft.println(dataText);        
+            tft.setCursor(10, 200);
+            tft.println(hour);
         }
 
         void Display(GrowattData data) {

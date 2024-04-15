@@ -15,7 +15,7 @@ const int BATTERY_POWER_FOR_BOILER = 74; // Puterea bateriei necesară pentru bo
 const int BATTERY_POWER_FOR_HEATER = 89; // Puterea bateriei necesară pentru încălzitorul de apă în %
 
 const int CHECKER_FOR_COUNTER_ON = 7; // Verificator pentru contorizarea pornirii în secunde
-const int CHECKER_FOR_COUNTER_OFF = 10; // Verificator pentru contorizarea opirii în secunde
+const int CHECKER_FOR_COUNTER_OFF = 14; // Verificator pentru contorizarea opirii în secunde
 
 const int ON = LOW; // Stare de activare (în cazul pinilor)
 const int OFF = HIGH; // Stare de dezactivare (în cazul pinilor)

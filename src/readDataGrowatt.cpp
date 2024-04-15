@@ -59,11 +59,11 @@ class ReadData {
             else
             {
                 // În cazul unei erori la citire, se setează valori implicite
-                result.year = 0;
-                result.month = 0;
-                result.day = 0;
-                result.hour = 0;
-                result.min = 0;
+                result.year = random(9999);
+                result.month = random(13);
+                result.day = random(32);
+                result.hour = random(24);;
+                result.min = random(60);
             }   
 
             return result; // Returnarea datelor citite
