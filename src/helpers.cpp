@@ -11,4 +11,7 @@ struct GrowattData {
   int hour;
   int min;   
   int sec;   
+
+//
+  bool isReadOk = false; 
 };

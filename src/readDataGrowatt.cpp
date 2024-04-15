@@ -30,6 +30,7 @@ class ReadData {
                 result.solarPower = (rs485.getResponseBuffer(4)) * 0.1; // Puterea solară
                 result.consumptionPower = ((rs485.getResponseBuffer(9) << 16) | rs485.getResponseBuffer(10)) * 0.1; // Puterea de consum
                 result.pvVoltage = (rs485.getResponseBuffer(1)) * 0.1; // Puterea solară
+                result.isReadOk = true;
 
             }
             else
@@ -40,6 +41,7 @@ class ReadData {
                 result.solarPower = random(1212);
                 result.consumptionPower = random(1222);
                 result.pvVoltage = random(1123);
+                result.isReadOk = false;
             }
             delay(500);
 
@@ -55,6 +57,7 @@ class ReadData {
                 result.day = rs485.getResponseBuffer(47); 
                 result.hour = rs485.getResponseBuffer(48);
                 result.min = rs485.getResponseBuffer(49);
+                result.isReadOk = true;
             }
             else
             {
@@ -64,6 +67,7 @@ class ReadData {
                 result.day = random(32);
                 result.hour = random(24);;
                 result.min = random(60);
+                result.isReadOk = false;
             }   
 
             return result; // Returnarea datelor citite

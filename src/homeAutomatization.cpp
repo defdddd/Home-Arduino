@@ -10,6 +10,40 @@ class HouseAutomatization {
             heaterCount = 0;
         }
 
+        bool canRunByDate(GrowattData data)
+        {
+            if(!data.isReadOk)
+            {
+                return false;
+            }
+
+            int month = data.month;
+            int hour = data.hour;
+
+            if(hour < 8)
+            {
+                return false;
+            }
+
+            if(month == 2 || month == 3)
+            {
+                return hour < 16;
+            }
+
+            if(month == 1 || month == 12 || month == 11)
+            {
+                return hour < 17;
+            }
+
+            if(month == 4 || month == 5 || month == 10 || month == 9)
+            {
+                return hour < 17;
+            }
+            
+            return hour < 18;
+
+        }
+
         void updateStatusBoiler(int solarPower, int batteryPow){
 
             if(batteryPow > BATTERY_POWER_FOR_BOILER)
@@ -94,7 +128,7 @@ class HouseAutomatization {
 
                 digitalWrite(AUTOMATIC_SWITCH, ON); // Pornirea automatizării casei
 
-                if(solarPower > START_SOLAR_POWER || pvVoltage > START_SOLAR_VOLTAGE)
+                if(canRunByDate(data))
                 {
                     updateStatusBoiler(solarPower, batteryPow); // Actualizarea stării boilerului
 
