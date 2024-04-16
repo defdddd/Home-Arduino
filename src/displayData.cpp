@@ -38,6 +38,7 @@ class DisplayData {
 
         if (data.hour != previousHour) {
             tft.resetDisplay();
+            Setup();
             previousHour = data.hour; // Actualizează valoarea anterioară
         }
 
