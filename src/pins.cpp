@@ -36,3 +36,45 @@ const int TX = PD1; // Pinul pentru transmiterea serială
 
 const int TFT_DC = 7; // Pinul pentru comanda DC al ecranului TFT
 const int TFT_RST = 8; // Pinul pentru resetarea ecranului TFT
+
+/// hours and minutes 
+
+///ianuarie
+const int HOUR_01 = 15;
+const int MIN_01 = 30;
+///februarie
+const int HOUR_02 = 16;
+const int MIN_02 = 10;
+///martie
+const int HOUR_03 = 17;
+const int MIN_03 = 50;
+///aprilie
+const int HOUR_04 = 18;
+const int MIN_04 = 25;
+///mai
+const int HOUR_05 = 18;
+const int MIN_05 = 50;
+///iunie
+const int HOUR_06 = 19;
+const int MIN_06 = 10;
+///iulie
+const int HOUR_07 = 18;
+const int MIN_07 = 45;
+///august
+const int HOUR_08 = 17;
+const int MIN_08 = 55;
+///septembrie
+const int HOUR_09 = 17;
+const int MIN_09 = 2;
+///octombrie
+const int HOUR_10 = 16;
+const int MIN_10 = 10;
+///noiembrie
+const int HOUR_11 = 15;
+const int MIN_11 = 1;
+///decembrie
+const int HOUR_12 = 15;
+const int MIN_12 = 2;
+
+
+
