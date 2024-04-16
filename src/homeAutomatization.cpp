@@ -88,7 +88,6 @@ class HouseAutomatization {
 
             int batteryPow = data.batteryPOW;
             int solarPower = data.solarPower;
-            int pvVoltage = data.pvVoltage;
 
             //Serial.println("Boiler seconds:"+ String(boilerCount)); // Afisarea contorului pentru boiler în secunde
             //Serial.println("Solar Power:" + String(solarPower)); // Afisarea puterii solare

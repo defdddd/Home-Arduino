@@ -25,6 +25,8 @@ class DisplayData {
     int previousConsumptionPower = 0;
     int previousMinute = 0;
     int previousDay = 0;
+    int previousHour = 0;
+
 
     void checkData(GrowattData data)
     {
@@ -32,6 +34,11 @@ class DisplayData {
         // Actualizează valoarea pe ecran
             tft.fillRect(140, 20, 100, 20, BLACK);
             previousInvertorStatus = data.invertorStatus; // Actualizează valoarea anterioară
+        }
+
+        if (data.hour != previousHour) {
+            tft.resetDisplay();
+            previousHour = data.hour; // Actualizează valoarea anterioară
         }
 
         if (data.batteryPOW != previousBatteryPOW) {
@@ -141,7 +148,7 @@ class DisplayData {
             displayInputData();
 
             displayHoldingData();
-        }    
+        }   
 };
 
 ///LCD pin	LCD pin name	Arduino
