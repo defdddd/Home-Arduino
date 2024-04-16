@@ -19,29 +19,74 @@ class HouseAutomatization {
 
             int month = data.month;
             int hour = data.hour;
+            int min = data.min;
 
             if(hour < 8)
             {
                 return false;
             }
 
-            if(month == 2 || month == 3)
+            if(month == 1)
             {
-                return hour < 16;
+                return hour <= HOUR_01 && min < MIN_01;
             }
 
-            if(month == 1 || month == 12 || month == 11)
+            if(month == 2)
             {
-                return hour < 15;
+                return hour <= HOUR_02 && min < MIN_02;
             }
 
-            if(month == 4 || month == 5 || month == 10 || month == 9)
+            if(month == 3)
             {
-                return hour < 17;
+                return hour <= HOUR_03 && min < MIN_03;
             }
             
-            return hour < 18;
+            if(month == 4)
+            {
+                return hour <= HOUR_04 && min < MIN_04;
+            }
+            
+            if(month == 5)
+            {
+                return hour <= HOUR_05 && min < MIN_05;
+            }
+            
+            if(month == 6)
+            {
+                return hour <= HOUR_06 && min < MIN_06;
+            }
+            
+            if(month == 7)
+            {
+                return hour <= HOUR_07 && min < MIN_07;
+            }
+            
+            if(month == 8)
+            {
+                return hour <= HOUR_08 && min < MIN_08;
+            }
+            
+            if(month == 9)
+            {
+                return hour <= HOUR_09 && min < MIN_09;
+            }
+            
+            if(month == 10)
+            {
+                return hour <= HOUR_10 && min < MIN_10;
+            }
+            
+            if(month == 11)
+            {
+                return hour <= HOUR_11 && min < MIN_11;
+            }
+            
+            if(month == 12)
+            {
+                return hour <= HOUR_12 && min < MIN_12;
+            }
 
+            return true;
         }
 
         void updateStatusBoiler(int solarPower, int batteryPow){
