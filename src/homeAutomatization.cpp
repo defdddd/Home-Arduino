@@ -10,84 +10,23 @@ class HouseAutomatization {
             heaterCount = 0;
         }
 
-        bool canRunByDate(GrowattData data)
-        {
-            if(!data.isReadOk)
-            {
+        bool canRunByDate(GrowattData data) {
+            if (!data.isReadOk || data.hour < 8) {
                 return false;
             }
-
+            
             int month = data.month;
             int hour = data.hour;
             int min = data.min;
+            
+            int hours[] = { HOUR_01, HOUR_02, HOUR_03, HOUR_04, HOUR_05, HOUR_06,
+                            HOUR_07, HOUR_08, HOUR_09, HOUR_10, HOUR_11, HOUR_12 };
+            int minutes[] = { MIN_01, MIN_02, MIN_03, MIN_04, MIN_05, MIN_06, MIN_07,
+                              MIN_08, MIN_09, MIN_10, MIN_11, MIN_12 };
+    
+            return hour <= hours[month - 1] && min < minutes[month - 1];
+    }
 
-            if(hour < 8)
-            {
-                return false;
-            }
-
-            if(month == 1)
-            {
-                return hour <= HOUR_01 && min < MIN_01;
-            }
-
-            if(month == 2)
-            {
-                return hour <= HOUR_02 && min < MIN_02;
-            }
-
-            if(month == 3)
-            {
-                return hour <= HOUR_03 && min < MIN_03;
-            }
-            
-            if(month == 4)
-            {
-                return hour <= HOUR_04 && min < MIN_04;
-            }
-            
-            if(month == 5)
-            {
-                return hour <= HOUR_05 && min < MIN_05;
-            }
-            
-            if(month == 6)
-            {
-                return hour <= HOUR_06 && min < MIN_06;
-            }
-            
-            if(month == 7)
-            {
-                return hour <= HOUR_07 && min < MIN_07;
-            }
-            
-            if(month == 8)
-            {
-                return hour <= HOUR_08 && min < MIN_08;
-            }
-            
-            if(month == 9)
-            {
-                return hour <= HOUR_09 && min < MIN_09;
-            }
-            
-            if(month == 10)
-            {
-                return hour <= HOUR_10 && min < MIN_10;
-            }
-            
-            if(month == 11)
-            {
-                return hour <= HOUR_11 && min < MIN_11;
-            }
-            
-            if(month == 12)
-            {
-                return hour <= HOUR_12 && min < MIN_12;
-            }
-
-            return true;
-        }
 
         void updateStatusBoiler(int solarPower, int batteryPow){
 
