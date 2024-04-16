@@ -32,7 +32,7 @@ class HouseAutomatization {
 
             if(month == 1 || month == 12 || month == 11)
             {
-                return hour < 17;
+                return hour < 15;
             }
 
             if(month == 4 || month == 5 || month == 10 || month == 9)
