@@ -76,5 +76,9 @@ const int MIN_11 = 1;
 const int HOUR_12 = 15;
 const int MIN_12 = 2;
 
-
+/////
+const int HOURS[] = { HOUR_01, HOUR_02, HOUR_03, HOUR_04, HOUR_05, HOUR_06,
+                      HOUR_07, HOUR_08, HOUR_09, HOUR_10, HOUR_11, HOUR_12 };
+const int MINUTES[] = { MIN_01, MIN_02, MIN_03, MIN_04, MIN_05, MIN_06, MIN_07,
+                        MIN_08, MIN_09, MIN_10, MIN_11, MIN_12 };
 
