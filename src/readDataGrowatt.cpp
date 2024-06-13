@@ -65,7 +65,7 @@ class ReadData {
                 result.year = random(9999);
                 result.month = random(13);
                 result.day = random(32);
-                result.hour = random(24);;
+                result.hour = 6;
                 result.min = random(60);
                 result.isReadOk = false;
             }   

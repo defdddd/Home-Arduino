@@ -3,8 +3,8 @@
 //CONSTANTS
 const int NUMBER_OF_INVERTORS = 2; // Numărul de invertori utilizat
 const int HOUSE_CONSUMPTION = 50; // Consumul casei în watt
-const int BOILER_POWER = (3000/NUMBER_OF_INVERTORS) + HOUSE_CONSUMPTION; // Puterea boilerei în watt
-const int WATER_HEATER_POWER = (4000/NUMBER_OF_INVERTORS) + HOUSE_CONSUMPTION; // Puterea încălzitorului de apă în watt
+const int BOILER_POWER = (2700/NUMBER_OF_INVERTORS) + HOUSE_CONSUMPTION; // Puterea boilerei în watt
+const int WATER_HEATER_POWER = (3700/NUMBER_OF_INVERTORS) + HOUSE_CONSUMPTION; // Puterea încălzitorului de apă în watt
 
 const int START_SOLAR_POWER = 50; // Puterea inițială a sursei solare în watt
 const int BATTERY_POWER_FOR_SWITHCING_OFF = 40; // Puterea bateriei pentru întreruperea alimentării în %
@@ -16,6 +16,7 @@ const int BATTERY_POWER_FOR_HEATER = 89; // Puterea bateriei necesară pentru î
 
 const int CHECKER_FOR_COUNTER_ON = 7; // Verificator pentru contorizarea pornirii în secunde
 const int CHECKER_FOR_COUNTER_OFF = 14; // Verificator pentru contorizarea opirii în secunde
+const int CHECKER_FOR_COUNTER_MIN = 2; // in minute
 
 const int ON = LOW; // Stare de activare (în cazul pinilor)
 const int OFF = HIGH; // Stare de dezactivare (în cazul pinilor)
