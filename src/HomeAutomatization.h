@@ -91,7 +91,6 @@ class HouseAutomatization {
                 digitalWrite(AUTOMATIC_SWITCH, OFF); // Oprirea automatizării casei dacă puterea bateriei este prea mică
                 digitalWrite(BOILER, OFF); // Oprirea boilerului
                 digitalWrite(WATER_HEATER, OFF); // Oprirea încălzitorului de apă
-                return;
             }
 
             if(batteryPow > BATTERY_POWER_FOR_SWITHCING_ON)
