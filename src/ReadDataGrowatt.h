@@ -39,11 +39,11 @@ class ReadData {
             else
             {
                 // În cazul unei erori la citire, se setează valori implicite
-                result.invertorStatus = random(1);
-                result.batteryPOW = random(100);
-                result.solarPower = random(1212);
-                result.consumptionPower = random(1222);
-                result.pvVoltage = random(1123);
+                result.invertorStatus = 1;
+                result.batteryPOW = 100;
+                result.solarPower = 3212;
+                result.consumptionPower = 3222;
+                result.pvVoltage = 1123;
                 result.isReadOk = false;
             }
 
@@ -61,11 +61,11 @@ class ReadData {
             else
             {
                 // În cazul unei erori la citire, se setează valori implicite
-                result.year = random(9999);
-                result.month = random(13);
-                result.day = random(32);
-                result.hour = 6;
-                result.min = random(60);
+                result.year = 2024;
+                result.month = 10;
+                result.day = 12;
+                result.hour = 9;
+                result.min = 22;
                 result.isReadOk = false;
             }   
 
