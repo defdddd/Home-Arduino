@@ -1,3 +1,6 @@
+#ifndef Helpers_h
+#define Helpers_h
+
 struct GrowattData {
   float invertorStatus;
   float batteryPOW;
@@ -15,3 +18,4 @@ struct GrowattData {
 //
   bool isReadOk = false; 
 };
+#endif

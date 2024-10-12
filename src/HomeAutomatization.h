@@ -1,14 +1,10 @@
-#include <readDataGrowatt.cpp> // Includerea fișierului pentru citirea datelor Growatt
+#ifndef HomeAutomatization_h
+#define HomeAutomatization_h
+
+#include <ReadDataGrowatt.h> // Includerea fișierului pentru citirea datelor Growatt
 
 class HouseAutomatization {
     private:
-        // int boilerCount = 0; // Contor pentru activarea boilerului
-        // int heaterCount = 0; // Contor pentru activarea încălzitorului de apă
-
-        // void resetCounters(){
-        //     boilerCount = 0;
-        //     heaterCount = 0;
-        // }
 
         bool canRunByDate(GrowattData data) {
             int month = data.month;
@@ -40,22 +36,6 @@ class HouseAutomatization {
                         digitalWrite(BOILER, OFF);
                     }
                 }
-
-                // Pornirea boilerului la fiecare 10 secunde
-                // if(boilerCount % CHECKER_FOR_COUNTER_ON == 0){
-                //     digitalWrite(BOILER, ON);
-                // }
-
-                // // Oprirea boilerului după 20 de secunde dacă nu există suficientă putere solară
-                // if(boilerCount > CHECKER_FOR_COUNTER_OFF)
-                // {
-                //     boilerCount = 0;
-
-                //     if(solarPower < BOILER_POWER)
-                //     {
-                //         digitalWrite(BOILER, OFF);
-                //     }
-                // }
             }             
             else
             {
@@ -81,22 +61,6 @@ class HouseAutomatization {
                     }
                 }
 
-
-                // // Pornirea încălzitorului de apă la fiecare 10 secunde
-                // if(heaterCount % CHECKER_FOR_COUNTER_ON == 0){
-                //     digitalWrite(WATER_HEATER, ON);
-                // }
-
-                // // Oprirea încălzitorului de apă după 20 de secunde dacă nu există suficientă putere solară
-                // if(heaterCount > CHECKER_FOR_COUNTER_OFF)
-                // {
-                //     heaterCount = 0;
-
-                //     if(solarPower < WATER_HEATER_POWER)
-                //     {
-                //         digitalWrite(WATER_HEATER, OFF);
-                //     }
-                // }
             }             
             else
             {
@@ -127,7 +91,6 @@ class HouseAutomatization {
                 digitalWrite(AUTOMATIC_SWITCH, OFF); // Oprirea automatizării casei dacă puterea bateriei este prea mică
                 digitalWrite(BOILER, OFF); // Oprirea boilerului
                 digitalWrite(WATER_HEATER, OFF); // Oprirea încălzitorului de apă
-                //resetCounters(); // Resetarea contoarelor
                 return;
             }
 
@@ -141,21 +104,15 @@ class HouseAutomatization {
                     updateStatusBoiler(solarPower, batteryPow, data); // Actualizarea stării boilerului
 
                     updateStatusHeater(solarPower, batteryPow, data); // Actualizarea stării încălzitorului de apă
-
-                    //boilerCount++; // Incrementarea contorului pentru boiler
-                   // heaterCount++; // Incrementarea contorului pentru încălzitorul de apă
                 }
                 else
                 {
                     digitalWrite(BOILER, OFF); // Oprirea boilerului
                     digitalWrite(WATER_HEATER, OFF); // Oprirea încălzitorului de apă
-                    //resetCounters(); // Resetarea contoarelor
                 }
             }
-            else
-            {
-                //resetCounters(); // Resetarea contoarelor dacă puterea bateriei este prea mică
-            }
-            //delay(1000); // O eventuală întârziere (nu este activată în acest moment)
+
         }
 };
+
+#endif

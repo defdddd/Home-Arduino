@@ -1,6 +1,10 @@
+
+#ifndef ReadDataGrowatt_h
+#define ReadDataGrowatt_h
+
 #include <ModbusMaster.h> // Includerea bibliotecii ModbusMaster pentru comunicarea Modbus
-#include <pins.cpp> // Includerea fișierului de configurare a pinilor
-#include <helpers.cpp> // Includerea fișierului de funcții auxiliare
+#include <Pins.h> // Includerea fișierului de configurare a pinilor
+#include <Helpers.h> // Includerea fișierului de funcții auxiliare
 #include <SoftwareSerial.h> // Includerea bibliotecii SoftwareSerial pentru comunicare serială software
 
 class ReadData {
@@ -21,7 +25,6 @@ class ReadData {
 
             uint8_t gorwatInputResult = rs485.readInputRegisters(0x0000, 64); // Citirea registrilor de intrare Modbus
 
-            delay(500);
             if (gorwatInputResult == rs485.ku8MBSuccess)   // Verificarea rezultatului citirii
             {
                 // Interpretarea datelor citite pentru statusul invertorului și datele PV
@@ -43,12 +46,8 @@ class ReadData {
                 result.pvVoltage = random(1123);
                 result.isReadOk = false;
             }
-            delay(500);
-
 
             uint8_t gorwatHoldingResult = rs485.readHoldingRegisters(0x0000, 64); // Citirea registrilor de intrare Modbus
-
-            delay(500);
 
             if (gorwatHoldingResult == rs485.ku8MBSuccess)   // Verificarea rezultatului citirii
             {         
@@ -73,3 +72,5 @@ class ReadData {
             return result; // Returnarea datelor citite
         }
 };
+
+#endif

@@ -1,3 +1,7 @@
+
+#ifndef Pins_h
+#define Pins_h
+
 #include <Arduino.h>
 
 //CONSTANTS
@@ -83,3 +87,4 @@ const int HOURS[] = { HOUR_01, HOUR_02, HOUR_03, HOUR_04, HOUR_05, HOUR_06,
 const int MINUTES[] = { MIN_01, MIN_02, MIN_03, MIN_04, MIN_05, MIN_06, MIN_07,
                         MIN_08, MIN_09, MIN_10, MIN_11, MIN_12 };
 
+#endif

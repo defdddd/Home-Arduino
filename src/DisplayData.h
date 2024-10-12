@@ -1,4 +1,7 @@
-#include <homeAutomatization.cpp>
+#ifndef DisplayData_h
+#define DisplayData_h
+
+#include <HomeAutomatization.h>
 #include <Adafruit_GFX.h>
 #include <Arduino_ST7789_Fast.h>
 #include <SPI.h>
@@ -160,3 +163,5 @@ class DisplayData {
 ///#05	RES	D8 or any digital
 ///#06	DC	D7 or any digital
 ///#07	BLK	NC
+
+#endif
