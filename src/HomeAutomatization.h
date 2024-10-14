@@ -14,8 +14,13 @@ class HouseAutomatization {
             if (hour < 8) {
                 return false;
             }
+
+            if(hour == HOURS[month - 1])
+            {
+                return min < MINUTES[month - 1];
+            }
             
-            return hour <= HOURS[month - 1] && min < MINUTES[month - 1];
+            return hour < HOURS[month - 1];
         }
 
 

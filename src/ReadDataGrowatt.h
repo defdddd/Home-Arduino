@@ -11,6 +11,7 @@ class ReadData {
     private:
         ModbusMaster rs485; // Obiect pentru comunicarea Modbus
         SoftwareSerial *serial; // Obiect pentru comunicarea serială software
+        GrowattData result; // Crearea unui obiect GrowattData pentru a stoca datele citite
     public: 
         ReadData() {} // Constructorul clasei
 
@@ -21,7 +22,7 @@ class ReadData {
         }
 
         GrowattData GetDataFromInvertor() {
-            GrowattData result; // Crearea unui obiect GrowattData pentru a stoca datele citite
+           
 
             uint8_t gorwatInputResult = rs485.readInputRegisters(0x0000, 64); // Citirea registrilor de intrare Modbus
 
@@ -64,7 +65,7 @@ class ReadData {
                 result.year = 2024;
                 result.month = 10;
                 result.day = 12;
-                result.hour = 9;
+                result.hour = 10;
                 result.min = 22;
                 result.isReadOk = false;
             }   
