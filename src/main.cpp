@@ -3,6 +3,7 @@
 ReadData readData;
 DisplayData TFT;
 HouseAutomatization houseAutomatization;
+GrowattData growattData;
 
 unsigned long previousMillis = 0;  // Variabila care va reține ultimul timp în care LED-ul a fost schimbat
 const long interval = 1000;
@@ -15,7 +16,6 @@ void setup() {
 
 void loop() {
     //ia datele de la invertor
-  GrowattData growattData;
 
     unsigned long currentMillis = millis();  // Timpul curent în milisecunde
 
