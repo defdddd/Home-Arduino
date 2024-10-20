@@ -6,7 +6,7 @@ HouseAutomatization houseAutomatization;
 GrowattData growattData;
 
 unsigned long previousMillis = 0;  // Variabila care va reține ultimul timp în care LED-ul a fost schimbat
-const long interval = 1000;
+const long interval = 3000;
 
 void setup() {
   readData.Setup();
