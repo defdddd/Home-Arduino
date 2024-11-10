@@ -11,12 +11,12 @@ const int BOILER_POWER = (2700/NUMBER_OF_INVERTORS) + HOUSE_CONSUMPTION; // Pute
 const int WATER_HEATER_POWER = (3700/NUMBER_OF_INVERTORS) + HOUSE_CONSUMPTION; // Puterea încălzitorului de apă în watt
 
 const int START_SOLAR_POWER = 50; // Puterea inițială a sursei solare în watt
-const int BATTERY_POWER_FOR_SWITHCING_OFF = 40; // Puterea bateriei pentru întreruperea alimentării în %
-const int BATTERY_POWER_FOR_SWITHCING_ON = 42; // Puterea bateriei pentru reluarea alimentării în %
+const int BATTERY_POWER_FOR_SWITHCING_OFF = 28; // Puterea bateriei pentru întreruperea alimentării în %
+const int BATTERY_POWER_FOR_SWITHCING_ON = 35; // Puterea bateriei pentru reluarea alimentării în %
 const int START_SOLAR_VOLTAGE = 200;
 
-const int BATTERY_POWER_FOR_BOILER = 74; // Puterea bateriei necesară pentru boiler în %
-const int BATTERY_POWER_FOR_HEATER = 89; // Puterea bateriei necesară pentru încălzitorul de apă în %
+const int BATTERY_POWER_FOR_BOILER = 70; // Puterea bateriei necesară pentru boiler în %
+const int BATTERY_POWER_FOR_HEATER = 80; // Puterea bateriei necesară pentru încălzitorul de apă în %
 
 const int CHECKER_FOR_COUNTER_ON = 7; // Verificator pentru contorizarea pornirii în secunde
 const int CHECKER_FOR_COUNTER_OFF = 14; // Verificator pentru contorizarea opirii în secunde

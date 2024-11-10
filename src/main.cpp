@@ -6,7 +6,7 @@ HouseAutomatization houseAutomatization;
 GrowattData growattData;
 
 unsigned long previousMillis = 0;  // Variabila care va reține ultimul timp în care LED-ul a fost schimbat
-const long interval = 3000;
+const long interval = 1500;
 
 void setup() {
   readData.Setup();
@@ -24,11 +24,10 @@ void loop() {
         previousMillis = currentMillis;  // Actualizăm momentul ultimei schimbări
 
         growattData = readData.GetDataFromInvertor();
+          
+        //executa automatizarile in functie de date
+        houseAutomatization.Execute(growattData);
     }
-
-
-  //executa automatizarile in functie de date
-  houseAutomatization.Execute(growattData);
 
   //afiseaza datele pe dislay
   TFT.Display(growattData);
